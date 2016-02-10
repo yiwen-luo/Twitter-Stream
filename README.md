@@ -4,7 +4,7 @@
 This application retrieves tweets all round world with geographic locations from Twitter in realtime. Websocketd will send the location data through a websocket in realtime. An HTML page with Google Map API displays each of the location with a pin on the map, where the map is dynamic and supports all Google Map functions.
 
 
-### Data Steam
+### Data Stream
 This application utilizes Twitter Streaming API. More specifically, public streams from the API are fetched. The streams of data include tweets from all around the world in realtime. In addition to the content, more information of the tweets is given in the JSON format of data, which is described in detail below.
 The original information of the API can be found [here] (https://dev.twitter.com/streaming/public). Detailed application is developed with Python and [tweepy] (https://github.com/tweepy/tweepy) library.
 
