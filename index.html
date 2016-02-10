@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real-time Twitter Map</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+    <style type="text/css">
+	<!--
+	.panel {
+	        position:relative;
+	        bottom:340px;
+	        left:10px;
+	        width:240px;
+	        height:300px;
+	        background:white;
+	        overflow:scroll;
+	        }
+	-->
+	</style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<div class="panel" id="corner">
+    <p>Real-time Tweets Locations:</p>
+    <div id="data" style="top:50px"></div>
+</div>
+
+
+<script>
+var socket = new WebSocket("ws://localhost:8080/");
+var map;
+
+socket.onmessage = function(event) {
+    var rawJSON = JSON.parse(event.data);
+    var lat = rawJSON.lat;
+    var lng = rawJSON.lng;
+
+    var div = document.getElementById("data");
+    div.innerHTML = "lat:" + lat + ", lng:" + lng  + "<br/>" + div.innerHTML;
+
+    if (lat && lng) {
+		var latlng = new google.maps.LatLng(lat, lng);
+        marker = new google.maps.Marker({
+		    position: latlng,
+		    map: map});
+	}
+}
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 34, lng: 131.044922 },
+		zoom: 2,
+		mapTypeId: google.maps.MapTypeId.ROADMAP //SATELLITE
+    });
+}
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIMYjlm6eifYiiyid8ssiI5hUTSOAKmxo&signed_in=true&callback=initMap"></script>
+
+
+</body>
+</html>
