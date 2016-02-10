@@ -3,6 +3,8 @@
 ### Introduction
 This application retrieves tweets all round world with geographic locations from Twitter in realtime. Websocketd will send the location data through a websocket in realtime. An HTML page with Google Map API displays each of the location with a pin on the map, where the map is dynamic and supports all Google Map functions.
 
+Although the locations are just plotted on a map, other data are also collected like the text of the Tweet and the retweeting numbers. With other information, it is possbile to conduct multiple analyses, such as trend analyses, emotion analyses, etc.
+
 
 ### Data Stream
 This application utilizes Twitter Streaming API. More specifically, public streams from the API are fetched. The streams of data include tweets from all around the world in realtime. In addition to the content, more information of the tweets is given in the JSON format of data, which is described in detail below.
